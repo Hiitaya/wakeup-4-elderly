@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ฝึกรู้สึกตัว ตื่นยันหลับ - Minimal Cartoon Infographic (Elderly Friendly)</title>
+  <!-- Google Fonts: Sarabun & Mali -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mali:wght@500;600;700&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            mali: ['Mali', 'cursive', 'sans-serif'],
+            sarabun: ['Sarabun', 'sans-serif'],
+          },
+          colors: {
+            cream: '#FAF6F0',
+            warmBeige: '#F3ECE1',
+            peachSoft: '#FFD7C2',
+            peachDark: '#D85C3A',
+            dustyBlue: '#6A879E',
+            sageGreen: '#859A72',
+            woodBrown: '#3A2D2C',
+            lightBrown: '#6B5A51',
+            pastelYellow: '#FFF1BF'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #EFE7DC;
+      color: #3A2D2C;
+      font-family: 'Sarabun', sans-serif;
+    }
+    .comic-title {
+      font-family: 'Mali', cursive;
+    }
+    .clean-line {
+      stroke: #3A2D2C;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .clean-line-thin {
+      stroke: #554440;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .paper-texture {
+      background-image: radial-gradient(#E8DFC8 0.75px, transparent 0.75px);
+      background-size: 16px 16px;
+    }
+    .step-card {
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .step-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(58, 45, 44, 0.15);
+    }
+    .comic-bubble {
+      position: relative;
+      background: #FFFFFF;
+      border: 3px solid #3A2D2C;
+      border-radius: 18px;
+    }
+    .comic-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 32px;
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid #3A2D2C;
+    }
+    /* ซ่อน Scrollbar แต่ยังเลื่อนได้ */
+    .hide-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .hide-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .hide-scrollbar::-webkit-scrollbar-thumb {
+      background-color: #D9C5B2;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-2 sm:p-6 paper-texture">
+
+  <!-- Top Controller Bar -->
+  <div class="max-w-[1024px] w-full flex flex-wrap items-center justify-between mb-4 px-2 gap-3">
+    <div class="flex items-center gap-2">
+      <span class="inline-block w-4 h-4 rounded-full bg-peachDark"></span>
+      <span class="comic-title font-bold text-woodBrown text-base sm:text-lg">
+        สมุดภาพธรรมะฉบับพกใจ: พระอาจารย์คอยเตือนข้างหู
+      </span>
+    </div>
+    <!-- Scene Switcher Buttons -->
+    <div class="flex flex-wrap items-center gap-2 sm:gap-3 comic-title w-full sm:w-auto">
+      <button onclick="setMode('overview')" id="btn-overview" class="flex-1 sm:flex-none px-4 py-2 rounded-full border-[2.5px] border-woodBrown bg-peachSoft text-woodBrown font-bold text-sm sm:text-base shadow-sm transition">
+        ภาพรวม 6 สเต็ป
+      </button>
+      <button onclick="setMode('stepbystep')" id="btn-step" class="flex-1 sm:flex-none px-4 py-2 rounded-full border-[2.5px] border-woodBrown bg-white text-woodBrown font-bold text-sm sm:text-base hover:bg-warmBeige transition">
+        อ่านทีละสเต็ป 📖
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Infographic Box -->
+  <!-- แก้ไขให้สามารถเลื่อนแนวตั้งได้ (overflow-y-auto) และกำหนดสัดส่วน 4:3 เฉพาะจอใหญ่ -->
+  <main class="w-full max-w-[1024px] lg:aspect-[4/3] bg-cream rounded-[2rem] border-[4px] border-woodBrown shadow-[8px_8px_0px_0px_#3A2D2C] relative flex flex-col p-4 sm:p-6 overflow-y-auto hide-scrollbar" style="max-height: 85vh;">
+    
+    <!-- Header Banner Inside Artboard -->
+    <header class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-3 mb-3 border-b-[3px] border-dashed border-lightBrown/40 gap-3 shrink-0">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-peachSoft/80 border-2 border-woodBrown text-[13px] sm:text-[15px] text-woodBrown comic-title font-extrabold mb-2">
+          <span>🌙 พระจันทร์ข้างขึ้น vs ข้างแรม</span>
+        </div>
+        <h1 class="comic-title text-xl sm:text-3xl font-extrabold text-woodBrown tracking-tight leading-tight">
+          ชีวิตมงคล : รู้สึกตัว ไม่มีตัว ตื่นยันหลับ
+        </h1>
+      </div>
+      <!-- Mini Zen Monk Illustration -->
+      <div class="flex items-center gap-3 bg-warmBeige px-4 py-2 rounded-2xl border-[3px] border-woodBrown shadow-sm">
+        <svg width="48" height="48" viewBox="0 0 50 50" class="shrink-0">
+          <circle cx="25" cy="18" r="11" fill="#FFDFC7" class="clean-line" />
+          <path d="M19 14 Q23 10 27 12" fill="none" stroke="#FFF" stroke-width="2.5" stroke-linecap="round" />
+          <path d="M20 18 Q22 20 23 18" fill="none" class="clean-line-thin" />
+          <path d="M27 18 Q29 20 30 18" fill="none" class="clean-line-thin" />
+          <path d="M23 23 Q25 25 27 23" fill="none" class="clean-line-thin" />
+          <path d="M14 44 C15 32 20 28 25 28 C30 28 35 32 36 44 Z" fill="#E8985E" class="clean-line" />
+          <path d="M20 28 L34 44" fill="none" class="clean-line-thin" stroke="#3A2D2C" />
+          <circle cx="18" cy="21" r="2.5" fill="#FFAAA6" opacity="0.8" />
+          <circle cx="32" cy="21" r="2.5" fill="#FFAAA6" opacity="0.8" />
+        </svg>
+        <div class="leading-tight">
+          <p class="font-extrabold comic-title text-woodBrown text-[13px] sm:text-[15px]">คำสอนพระอาจารย์</p>
+          <p class="font-bold text-woodBrown text-[12px] sm:text-[14px]">"รู้สึกตัวทั้งตัว... ไม่มีตัว"</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- VIEW 1: 6-PANEL COMIC GRID -->
+    <!-- เปลี่ยน Grid ให้เป็น 1 คอลัมน์บนมือถือ และ 3 คอลัมน์บนจอใหญ่ -->
+    <div id="view-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 flex-1">
+      
+      <!-- Panel 1 -->
+      <div onclick="goToStep(0)" class="step-card bg-white rounded-2xl border-[3px] border-woodBrown p-3 sm:p-4 flex flex-col justify-between cursor-pointer">
+        <div class="flex items-center justify-between mb-1">
+          <span class="comic-title font-extrabold text-[13px] sm:text-[15px] text-white bg-peachDark px-2.5 py-0.5 rounded-full border-2 border-woodBrown">
+            01. ตื่นนอน (04:00)
+          </span>
+          <span class="text-[12px] sm:text-[14px] font-bold text-lightBrown">☀️ สมถะ</span>
+        </div>
+        <div class="my-2 flex items-center justify-center py-1">
+          <svg width="85" height="65" viewBox="0 0 100 80">
+            <rect x="15" y="42" width="70" height="28" rx="8" fill="#F3ECE1" class="clean-line" />
+            <rect x="20" y="32" width="30" height="18" rx="6" fill="#FFF" class="clean-line" />
+            <circle cx="35" cy="36" r="10" fill="#FFDFC7" class="clean-line" />
+            <path d="M30 36 Q34 33 37 36" fill="none" class="clean-line-thin" />
+            <path d="M38 46 Q60 40 85 48" fill="none" class="clean-line" />
+            <path d="M68 18 L72 26 L80 30 L72 34 L68 42 L64 34 L56 30 L64 26 Z" fill="#FFF1BF" stroke="#3A2D2C" stroke-width="2" />
+          </svg>
+        </div>
+        <div class="leading-snug">
+          <p class="font-extrabold text-woodBrown comic-title text-[15px] sm:text-[18px] mb-1">ลืมตาปุ๊บ รู้สึกตัวทั่วกาย</p>
+          <p class="font-semibold text-woodBrown text-[13px] sm:text-[15px] line-clamp-3">
+            อย่าเพิ่งคิดเรื่องงาน ขยับแขนขา เติมสมถะให้เต็ม ความลืมตัวจะแทรกไม่ได้
+          </p>
+        </div>
+      </div>
+
+      <!-- Panel 2 -->
+      <div onclick="goToStep(1)" class="step-card bg-white rounded-2xl border-[3px] border-woodBrown p-3 sm:p-4 flex flex-col justify-between cursor-pointer">
+        <div class="flex items-center justify-between mb-1">
+          <span class="comic-title font-extrabold text-[13px] sm:text-[15px] text-white bg-dustyBlue px-2.5 py-0.5 rounded-full border-2 border-woodBrown">
+            02. ส่องกระจก (07:30)
+          </span>
+          <span class="text-[12px] sm:text-[14px] font-bold text-lightBrown">🪞 ระลึกถูก</span>
+        </div>
+        <div class="my-2 flex items-center justify-center py-1">
+          <svg width="85" height="65" viewBox="0 0 100 80">
+            <ellipse cx="50" cy="40" rx="30" ry="34" fill="#E8F1F5" class="clean-line" />
+            <ellipse cx="50" cy="40" rx="24" ry="28" fill="#FFF" class="clean-line-thin" />
+            <circle cx="50" cy="38" r="13" fill="#FFDFC7" class="clean-line-thin" />
+            <path d="M44 38 Q47 40 50 38" fill="none" class="clean-line-thin" />
+            <path d="M52 38 Q55 40 58 38" fill="none" class="clean-line-thin" />
+            <rect x="74" y="48" width="12" height="18" rx="3" fill="#FFAAA6" class="clean-line-thin" />
+            <rect x="77" y="44" width="6" height="4" fill="#3A2D2C" />
+          </svg>
+        </div>
+        <div class="leading-snug">
+          <p class="font-extrabold text-woodBrown comic-title text-[15px] sm:text-[18px] mb-1">มองทะลุ "หนังห่อหุ้ม"</p>
+          <p class="font-semibold text-woodBrown text-[13px] sm:text-[15px] line-clamp-3">
+            ดูแลตามหน้าที่ ไม่หลงยึดว่า มันจะไม่แก่ กายนี้คืออาการ 32 ที่กำลังหมุนไปตามกาลเวลา
+          </p>
+        </div>
+      </div>
+
+      <!-- Panel 3 -->
+      <div onclick="goToStep(2)" class="step-card bg-white rounded-2xl border-[3px] border-woodBrown p-3 sm:p-4 flex flex-col justify-between cursor-pointer">
+        <div class="flex items-center justify-between mb-1">
+          <span class="comic-title font-extrabold text-[13px] sm:text-[15px] text-white bg-peachDark px-2.5 py-0.5 rounded-full border-2 border-woodBrown">
+            03. ทำงาน (11:30)
+          </span>
+          <span class="text-[12px] sm:text-[14px] font-bold text-lightBrown">🗣️ ดักจับ</span>
+        </div>
+        <div class="my-2 flex items-center justify-center py-1">
+          <svg width="85" height="65" viewBox="0 0 100 80">
+            <rect x="20" y="52" width="60" height="6" rx="2" fill="#D9C5B2" class="clean-line-thin" />
+            <rect x="35" y="38" width="30" height="15" rx="3" fill="#8FA3B0" class="clean-line-thin" />
+            <ellipse cx="68" cy="24" rx="14" ry="12" fill="#FFCDB2" class="clean-line" />
+            <circle cx="63" cy="22" r="1.8" fill="#3A2D2C" />
+            <circle cx="73" cy="22" r="1.8" fill="#3A2D2C" />
+            <path d="M64 28 Q68 25 72 28" fill="none" class="clean-line-thin" />
+            <path d="M54 12 Q58 6 64 8" fill="none" stroke="#6B5A51" stroke-width="2" stroke-dasharray="2,2" />
+            <text x="32" y="16" font-size="12" fill="#6B5A51" font-weight="bold" font-family="Mali">บ่นงึมงำ...</text>
+          </svg>
+        </div>
+        <div class="leading-snug">
+          <p class="font-extrabold text-woodBrown comic-title text-[15px] sm:text-[18px] mb-1">รู้ทัน "ตัวชอบบ่น/พากย์"</p>
+          <p class="font-semibold text-woodBrown text-[13px] sm:text-[15px] line-clamp-3">
+            ความจำ/คิด ที่คอยเทียบเคียง ให้รู้ทันว่าเป็นอนิจจัง ดูเฉยๆ ไม่ต้องไปว่าอะไรมัน
+          </p>
+        </div>
+      </div>
+
+      <!-- Panel 4 -->
+      <div onclick="goToStep(3)" class="step-card bg-white rounded-2xl border-[3px] border-woodBrown p-3 sm:p-4 flex flex-col justify-between cursor-pointer">
+        <div class="flex items-center justify-between mb-1">
+          <span class="comic-title font-extrabold text-[13px] sm:text-[15px] text-white bg-sageGreen px-2.5 py-0.5 rounded-full border-2 border-woodBrown">
+            04. บ่ายล้า (15:30)
+          </span>
+          <span class="text-[12px] sm:text-[14px] font-bold text-lightBrown">🧘 แยกรูปนาม</span>
+        </div>
+        <div class="my-2 flex items-center justify-center py-1">
+          <svg width="85" height="65" viewBox="0 0 100 80">
+            <circle cx="45" cy="24" r="9" fill="#FFDFC7" class="clean-line-thin" />
+            <path d="M45 33 C40 38 35 48 40 60 L62 60" fill="none" class="clean-line" />
+            <path d="M52 46 L58 42 L55 49 L62 46" fill="none" stroke="#D85C3A" stroke-width="3" stroke-linecap="round" />
+            <path d="M72 26 C72 20 80 20 80 26 C80 32 72 38 72 38 C72 38 64 32 64 26 C64 20 72 20 72 26 Z" fill="#FFF1BF" class="clean-line-thin" />
+          </svg>
+        </div>
+        <div class="leading-snug">
+          <p class="font-extrabold text-woodBrown comic-title text-[15px] sm:text-[18px] mb-1">กายทุกข์ แต่ใจไม่ทุกข์</p>
+          <p class="font-semibold text-woodBrown text-[13px] sm:text-[15px] line-clamp-3">
+            ความเจ็บคือธรรมชาติของขันธ์ อย่าเอา "ตัวกู" ไปสวมแบกความปวด/เมื่อยเอาไว้
+          </p>
+        </div>
+      </div>
+
+      <!-- Panel 5 -->
+      <div onclick="goToStep(4)" class="step-card bg-white rounded-2xl border-[3px] border-woodBrown p-3 sm:p-4 flex flex-col justify-between cursor-pointer">
+        <div class="flex items-center justify-between mb-1">
+          <span class="comic-title font-extrabold text-[13px] sm:text-[15px] text-white bg-dustyBlue px-2.5 py-0.5 rounded-full border-2 border-woodBrown">
+            05. พลบค่ำ (19:30)
+          </span>
+          <span class="text-[12px] sm:text-[14px] font-bold text-lightBrown">🏷️ วางชื่อ</span>
+        </div>
+        <div class="my-2 flex items-center justify-center py-1">
+          <svg width="85" height="65" viewBox="0 0 100 80">
+            <rect x="22" y="24" width="28" height="16" rx="4" fill="#F3ECE1" class="clean-line-thin" transform="rotate(-12 36 32)" />
+            <rect x="48" y="32" width="28" height="16" rx="4" fill="#F3ECE1" class="clean-line-thin" transform="rotate(15 62 40)" />
+	        <text x="25" y="35" font-size="11" font-weight="bold" fill="#d6a6d3" font-family="Mali">"คำชม"</text>
+            <text x="51" y="43" font-size="11" font-weight="bold" fill="#6B5A51" font-family="Mali">"คำด่า"</text>
+            <path d="M15 54 Q40 50 65 56 Q80 60 90 52" fill="none" stroke="#6A879E" stroke-width="2" stroke-linecap="round" stroke-dasharray="4,3" />
+          </svg>
+        </div>
+        <div class="leading-snug">
+          <p class="font-extrabold text-woodBrown comic-title text-[15px] sm:text-[18px] mb-1">ลบเรื่องราว: เป็นแค่ความจำ</p>
+          <p class="font-semibold text-woodBrown text-[13px] sm:text-[15px] line-clamp-3">
+            สิ่งที่เกิดขึ้นจบไปแล้ว เหลือแต่ชื่อและความจำ ไม่ต้องเก็บมาเผาใจ
+          </p>
+        </div>
+      </div>
+
+      <!-- Panel 6 -->
+      <div onclick="goToStep(5)" class="step-card bg-white rounded-2xl border-[3px] border-woodBrown p-3 sm:p-4 flex flex-col justify-between cursor-pointer">
+        <div class="flex items-center justify-between mb-1">
+          <span class="comic-title font-extrabold text-[13px] sm:text-[15px] text-white bg-woodBrown px-2.5 py-0.5 rounded-full border-2 border-woodBrown">
+            06. เข้านอน (22:00)
+          </span>
+          <span class="text-[12px] sm:text-[14px] text-peachDark font-bold">🌕 วิมุตติ</span>
+        </div>
+        <div class="my-2 flex items-center justify-center py-1">
+          <svg width="85" height="65" viewBox="0 0 100 80">
+            <circle cx="50" cy="38" r="24" fill="#FFF1BF" class="clean-line" />
+            <circle cx="44" cy="32" r="3" fill="#F4E0A5" />
+            <circle cx="58" cy="42" r="4" fill="#F4E0A5" />
+            <path d="M30 46 C34 40 45 40 48 44 C53 40 65 42 68 48 C72 52 68 56 60 56 L35 56 Z" fill="#FFFFFF" opacity="0.9" />
+          </svg>
+        </div>
+        <div class="leading-snug">
+          <p class="font-extrabold text-woodBrown comic-title text-[15px] sm:text-[18px] mb-1">กายนี้คืนสู่ความว่าง</p>
+          <p class="font-semibold text-woodBrown text-[13px] sm:text-[15px] line-clamp-3">
+            ก่อนเกิดไม่มีชื่อ ดับไปก็ไม่มีชื่อ พอใจความเงียบที่ปัจจุบัน...คืนทุกอย่างสู่ความว่าง
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- VIEW 2: STEP-BY-STEP DEEP DIVE -->
+    <!-- ปล่อยให้ความสูงขยายตามเนื้อหา ลดปัญหาถูกตัด -->
+    <div id="view-step" class="hidden flex-1 flex-col bg-white rounded-[1.5rem] border-[3px] border-woodBrown p-4 sm:p-8 relative gap-4">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b-[3px] pb-3 sm:pb-4 border-dashed border-lightBrown/40 gap-2 shrink-0">
+        <div class="flex flex-wrap items-center gap-3">
+          <span id="step-badge" class="comic-title font-extrabold text-base sm:text-xl px-4 py-1 rounded-full bg-peachSoft border-2 border-woodBrown text-woodBrown">
+            สเต็ป 1 / 6
+          </span>
+          <span id="step-time" class="text-base sm:text-lg text-lightBrown font-bold">04:00 น. ช่วงตื่นนอน</span>
+        </div>
+        <div class="text-base sm:text-xl font-extrabold text-peachDark comic-title bg-peachSoft/30 px-3 py-1 rounded-xl" id="step-keyword">
+          สมถะ • รู้สึกตัว
+        </div>
+      </div>
+
+      <!-- Step Content Area -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 items-center flex-1">
+        <!-- Big Cartoon Illustration -->
+        <div class="md:col-span-5 flex justify-center items-center">
+          <div id="step-illustration-box" class="w-full max-w-[280px] h-48 sm:h-56 bg-warmBeige/60 rounded-3xl border-[3px] border-woodBrown flex items-center justify-center p-4">
+            <!-- Dynamic SVG inserted by JS -->
+          </div>
+        </div>
+
+        <!-- Dialogue & Practice Guidance -->
+        <div class="md:col-span-7 flex flex-col justify-center space-y-4">
+          <div class="comic-bubble p-4 sm:p-6 shadow-md">
+            <p class="comic-title text-peachDark text-lg sm:text-xl font-extrabold mb-2 flex items-center gap-2">
+              <span>🪷 พระอาจารย์เตือนว่า:</span>
+            </p>
+            <p id="step-quote" class="text-woodBrown text-[1.15rem] sm:text-[1.35rem] leading-relaxed font-extrabold">
+              "ตื่นปุ๊บ รู้สึกตัวทันที อย่าเพิ่งไปคิดเรื่องอื่น ความรู้สึกตัวต้องให้พอ ถ้าสมถะพอ ความลืมตัวมันจะแทรกไม่ได้"
+            </p>
+          </div>
+
+          <div class="bg-cream p-4 sm:p-5 rounded-2xl border-2 border-lightBrown/50">
+            <p class="font-extrabold text-woodBrown text-lg sm:text-xl comic-title mb-2">🎯 สิ่งที่ต้องทำ (Action):</p>
+            <p id="step-action" class="text-woodBrown text-base sm:text-[1.15rem] font-bold leading-relaxed">
+              ก่อนก้าวขาลงจากเตียง สูดลมหายใจลึกๆ 1 รอบ ขยับนิ้วมือ นิ้วเท้า รู้สึกว่ากายทั้งก้อนนี้นอนอยู่ รับรู้ความร้อน/เย็นที่สัมผัสได้
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Arrows (ตอนนี้จะเลื่อนลงมาอยู่ล่างสุดเสมอ ไม่โดนทับ) -->
+      <div class="flex flex-wrap items-center justify-between pt-4 border-t-[3px] border-dashed border-lightBrown/40 mt-auto shrink-0 gap-3">
+        <button onclick="prevStep()" class="px-4 py-2 rounded-full border-[3px] border-woodBrown bg-warmBeige hover:bg-peachSoft/60 text-woodBrown text-sm sm:text-lg comic-title font-extrabold transition flex items-center gap-2">
+          ← ก่อนหน้า
+        </button>
+        <!-- Step Dots Indicator -->
+        <div class="flex items-center gap-2" id="dots-container">
+          <!-- Dots generated by JS -->
+        </div>
+        <button onclick="nextStep()" class="px-5 py-2 rounded-full border-[3px] border-woodBrown bg-peachSoft hover:bg-peachDark hover:text-white text-woodBrown text-sm sm:text-lg comic-title font-extrabold transition flex items-center gap-2">
+          ถัดไป →
+        </button>
+      </div>
+    </div>
+
+    <!-- Bottom Footer Note -->
+    <footer class="mt-4 pt-3 border-t-2 border-lightBrown/30 flex flex-col sm:flex-row items-start sm:items-center justify-between text-sm sm:text-base text-woodBrown font-semibold comic-title gap-2 shrink-0">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-3 h-3 rounded-full bg-sageGreen"></span>
+        <span>แก่นธรรม 2 เสาหลัก: <strong>1. รู้สึกตัวทั้งตัว (สมถะ)</strong> & <strong>2. รู้ว่าไม่มีตัว (วิปัสสนา)</strong></span>
+      </div>
+      <div class="text-[11px] sm:text-sm text-lightBrown font-bold">
+        *บันทึกหน้ากระดาน 11 ต.ค. 2569
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Interactive Script -->
+  <script>
+    const stepsData = [
+      {
+        badge: "สเต็ป 1 / 6",
+        time: "04:00 น. ลืมตาตื่นนอน",
+        keyword: "สมถะ • รู้สึกตัวทั่วกาย",
+        quote: "“ตื่นปุ๊บ รู้สึกตัวทันที อย่าเพิ่งไปคว้าความคิดเรื่องงาน ให้สมถะมันพอ เติมให้เต็ม ความลืมตัวจะแทรกไม่ได้ จิตจะเป็นข้างขึ้นทันที”",
+        action: "นอนนิ่งๆ สัก 10-20 นาที ขยับนิ้วมือ นิ้วเท้า สัมผัสความรู้สึกทั้งตัวที่นอนอยู่ ปลุกความรู้สึกตัวให้ตื่นขึ้นมาก่อนความคิดจะเริ่มทำงาน",
+        svg: `<svg width="100%" height="100%" viewBox="0 0 100 80">
+                <rect x="15" y="45" width="70" height="24" rx="6" fill="#F3ECE1" stroke="#3A2D2C" stroke-width="2.5"/>
+                <circle cx="35" cy="38" r="11" fill="#FFDFC7" stroke="#3A2D2C" stroke-width="2.5"/>
+                <path d="M31 38 Q34 35 37 38" fill="none" stroke="#3A2D2C" stroke-width="2"/>
+                <path d="M42 48 Q60 42 85 50" fill="none" stroke="#3A2D2C" stroke-width="2.5"/>
+                <path d="M68 15 L72 23 L80 27 L72 31 L68 39 L64 31 L56 27 L64 23 Z" fill="#FFF1BF" stroke="#3A2D2C" stroke-width="2.2"/>
+              </svg>`
+      },
+      {
+        badge: "สเต็ป 2 / 6",
+        time: "07:30 น. ล้างหน้าส่องกระจก",
+        keyword: "ระลึกถูก • หนังห่อหุ้ม-กงล้อชีวิตหมุนไปตามเวลา",
+        quote: "“คนเราหลงติดหนังห่อหุ้ม กลัวแก่ ให้ระลึกถูกว่า..ร่างกายนี้ ไม่มีตัว มีแต่อาการ 32 ว่างเปล่า”",
+        action: "เวลาแปรงฟัน/ทาครีม ดูแลร่างกายตามหน้าที่ แต่รู้ตัวว่า 'ร่างที่มีหนังห่อหุ้มเป็นที่สุดรอบนี้ มีแต่ความเปลี่ยนแปลง มีทุกขังเป็นที่ตั้ง ไม่มีอะไรเป็นตัวตน'",
+        svg: `<svg width="100%" height="100%" viewBox="0 0 100 80">
+                <ellipse cx="50" cy="40" rx="30" ry="34" fill="#E8F1F5" stroke="#3A2D2C" stroke-width="2.5"/>
+                <ellipse cx="50" cy="40" rx="23" ry="27" fill="#FFF" stroke="#3A2D2C" stroke-width="1.8"/>
+                <circle cx="50" cy="38" r="13" fill="#FFDFC7" stroke="#3A2D2C" stroke-width="2"/>
+                <path d="M45 37 Q48 39 51 37" fill="none" stroke="#3A2D2C" stroke-width="2"/>
+                <path d="M53 37 Q56 39 59 37" fill="none" stroke="#3A2D2C" stroke-width="2"/>
+                <rect x="74" y="48" width="13" height="19" rx="3" fill="#FFAAA6" stroke="#3A2D2C" stroke-width="2"/>
+              </svg>`
+      },
+      {
+        badge: "สเต็ป 3 / 6",
+        time: "11:30 น. ระหว่างทำงาน",
+        keyword: "ดักจับ  • ตัวระเบียบชอบบ่น/พากย์" ,
+        quote: "“ไอ้ตัวระเบียบที่มันบ่นในหัวเรา งึมงำๆ ว่าทำไมเป็นอย่างงั้นอย่างงี้ ตัวมันเองก็เป็นอนิจจัง ความเปลี่ยนแปลงนั้น ไม่ได้มีความจำ/คิด/รู้สึก”",
+        action: "เมื่องานติดขัด/เกิดหงุดหงิด ฟังเสียงบ่นในหัวแล้วเห็นตามจริงว่า 'ความคิดกำลังเปลี่ยนแปลง' มันมาจากความว่าง ไม่มีตัว อย่าใส่ความรู้สึกเข้าไปเอง รู้สึกตัวให้มั่นคงไว้-: มือหยิบจับ, ฝ่าเท้าเหยียบพื้น",
+        svg: `<svg width="100%" height="100%" viewBox="0 0 100 80">
+                <rect x="20" y="52" width="60" height="6" rx="2" fill="#D9C5B2" stroke="#3A2D2C" stroke-width="2.2"/>
+                <rect x="35" y="38" width="30" height="15" rx="3" fill="#8FA3B0" stroke="#3A2D2C" stroke-width="2"/>
+                <ellipse cx="68" cy="24" rx="14" ry="12" fill="#FFCDB2" stroke="#3A2D2C" stroke-width="2.5"/>
+                <circle cx="63" cy="22" r="2" fill="#3A2D2C"/>
+                <circle cx="73" cy="22" r="2" fill="#3A2D2C"/>
+                <path d="M64 28 Q68 25 72 28" fill="none" stroke="#3A2D2C" stroke-width="2"/>
+                <text x="22" y="18" font-size="13" fill="#3A2D2C" font-weight="bold" font-family="Mali">บ่นงึมงำ...</text>
+              </svg>`
+      },
+      {
+        badge: "สเต็ป 4 / 6",
+        time: "15:30 น. บ่ายแก่เมื่อยล้า",
+        keyword: "วิปัสสนา • แยกกาย-ใจ" ,
+        quote: "“เมื่อย ปวด แก่ เจ็บ มันเป็นธรรมชาติของขันธ์ กายมันทุกข์เป็นธรรมดา แต่ถ้าใจไม่ยึดว่า 'กูเมื่อย กูเจ็บ' ทุกข์ก็อยู่แค่กาย ใจไม่เดือดร้อน”",
+        action: "เวลานั่งทำงานจนปวดหลัง ให้มองตรงๆ ว่าความปวดเป็นแค่ความรู้สึกทางกายที่เกิดขึ้น มันเปลี่ยนไปตามจริง ไม่ดึงมาไว้ในใจ ให้เกิด 'ตัวกู' ไปแบกเอาไว้",
+        svg: `<svg width="100%" height="100%" viewBox="0 0 100 80">
+                <circle cx="45" cy="24" r="9" fill="#FFDFC7" stroke="#3A2D2C" stroke-width="2.2"/>
+                <path d="M45 33 C40 38 35 48 40 60 L62 60" fill="none" stroke="#3A2D2C" stroke-width="2.5"/>
+                <path d="M52 46 L58 42 L55 49 L62 46" fill="none" stroke="#D85C3A" stroke-width="3" stroke-linecap="round"/>
+                <path d="M72 26 C72 20 80 20 80 26 C80 32 72 38 72 38 C72 38 64 32 64 26 C64 20 72 20 72 26 Z" fill="#FFF1BF" stroke="#3A2D2C" stroke-width="2.2"/>
+              </svg>`
+      },
+      {
+        badge: "สเต็ป 5 / 6",
+        time: "19:30 น. พลบค่ำพักผ่อน",
+        keyword: "อทวิ • วางชื่อและสมมุติ",
+        quote: "“คำชม คำด่า ที่เกิดขึ้นเมื่อบ่าย มันจบไปแล้ว ตอนนี้มีแต่ชื่อ มีแต่ความจำ มันไม่มีความจริงเหลืออยู่เลย จะแบกชื่อ แบกความจำมาให้เป็นทุกข์ทำไม”",
+        action: "ทิ้งเรื่องราวทั้งวันไว้หน้าบ้าน ไม่ว่าจะสำเร็จหรือล้มเหลว รู้สึกตัวว่ากำลังก้าวเดิน แล้วกลับมาอยู่กับความเงียบภายในบ้าน",
+        svg: `<svg width="100%" height="100%" viewBox="0 0 100 80">
+                <rect x="22" y="24" width="28" height="16" rx="4" fill="#F3ECE1" stroke="#3A2D2C" stroke-width="2" transform="rotate(-12 36 32)"/>
+                
+                <rect x="48" y="32" width="28" height="16" rx="4" fill="#F3ECE1" stroke="#3A2D2C" stroke-width="2" transform="rotate(15 62 40)"/>
+		<text x="25" y="35" font-size="12" font-weight="bold" fill="#d6a6d3" font-family="Mali">"คำชม"</text>
+                <text x="51" y="43" font-size="12" font-weight="bold" fill="#6B5A51" font-family="Mali">"คำด่า"</text>
+                <path d="M15 54 Q40 50 65 56 Q80 60 90 52" fill="none" stroke="#6A879E" stroke-width="2.5" stroke-dasharray="4,3"/>
+              </svg>`
+      },
+      {
+        badge: "สเต็ป 6 / 6",
+        time: "22:00 น. ก่อนเคลิ้มหลับ",
+        keyword: "วิมุตติ • คืนสู่ความว่าง",
+        quote: "“ก่อนเกิดก็ไม่มีชื่อ ตายไปก็ไม่มีชื่อ ร่างนี้มาจากความว่าง และกำลังคืนสู่ความว่าง นอนลงไปรู้สึกตัวทั้งตัว...แต่ไม่มีตัว จิตจะสว่างเหมือนพระจันทร์เต็มดวง”",
+        action: "ทอดกายลงบนที่นอน ไม่ต้องวิเคราะห์วิจัยธรรมะต่อ แค่รู้สึกตัวผ่อนคลายทั้งร่าง พอใจกับความเงียบในปัจจุบัน ปล่อยให้ร่างกายหลับไปตามธรรมชาติ",
+        svg: `<svg width="100%" height="100%" viewBox="0 0 100 80">
+                <circle cx="50" cy="38" r="25" fill="#FFF1BF" stroke="#3A2D2C" stroke-width="2.5"/>
+                <circle cx="44" cy="32" r="3" fill="#F4E0A5"/>
+                <circle cx="58" cy="42" r="4" fill="#F4E0A5"/>
+                <path d="M30 46 C34 40 45 40 48 44 C53 40 65 42 68 48 C72 52 68 56 60 56 L35 56 Z" fill="#FFFFFF" opacity="0.95" stroke="#3A2D2C" stroke-width="1.5"/>
+              </svg>`
+      }
+    ];
+
+    let currentStep = 0;
+
+    function renderDots() {
+      const container = document.getElementById('dots-container');
+      container.innerHTML = '';
+      stepsData.forEach((_, idx) => {
+        const dot = document.createElement('button');
+        dot.className = `w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all ${idx === currentStep ? 'w-6 sm:w-8 bg-peachDark' : 'bg-lightBrown/50'}`;
+        dot.onclick = () => { currentStep = idx; updateStepView(); };
+        container.appendChild(dot);
+      });
+    }
+
+    function updateStepView() {
+      const data = stepsData[currentStep];
+      document.getElementById('step-badge').innerText = data.badge;
+      document.getElementById('step-time').innerText = data.time;
+      document.getElementById('step-keyword').innerText = data.keyword;
+      document.getElementById('step-quote').innerText = data.quote;
+      document.getElementById('step-action').innerText = data.action;
+      document.getElementById('step-illustration-box').innerHTML = data.svg;
+      renderDots();
+      
+      // เลื่อนหน้าจอไปด้านบนสุดของการ์ดเวลากดเปลี่ยนสเต็ปบนมือถือ
+      document.querySelector('main').scrollTop = 0;
+    }
+
+    function nextStep() {
+      currentStep = (currentStep + 1) % stepsData.length;
+      updateStepView();
+    }
+
+    function prevStep() {
+      currentStep = (currentStep - 1 + stepsData.length) % stepsData.length;
+      updateStepView();
+    }
+
+    function goToStep(index) {
+      currentStep = index;
+      setMode('stepbystep');
+    }
+
+    function setMode(mode) {
+      const viewGrid = document.getElementById('view-grid');
+      const viewStep = document.getElementById('view-step');
+      const btnOverview = document.getElementById('btn-overview');
+      const btnStep = document.getElementById('btn-step');
+
+      if (mode === 'overview') {
+        viewGrid.classList.remove('hidden');
+        viewStep.classList.add('hidden');
+        btnOverview.className = "flex-1 sm:flex-none px-4 py-2 rounded-full border-[2.5px] border-woodBrown bg-peachSoft text-woodBrown font-bold text-sm sm:text-base shadow-sm transition";
+        btnStep.className = "flex-1 sm:flex-none px-4 py-2 rounded-full border-[2.5px] border-woodBrown bg-white text-woodBrown font-bold text-sm sm:text-base hover:bg-warmBeige transition";
+      } else {
+        viewGrid.classList.add('hidden');
+        viewStep.classList.remove('hidden');
+        viewStep.classList.add('flex');
+        btnStep.className = "flex-1 sm:flex-none px-4 py-2 rounded-full border-[2.5px] border-woodBrown bg-peachSoft text-woodBrown font-bold text-sm sm:text-base shadow-sm transition";
+        btnOverview.className = "flex-1 sm:flex-none px-4 py-2 rounded-full border-[2.5px] border-woodBrown bg-white text-woodBrown font-bold text-sm sm:text-base hover:bg-warmBeige transition";
+        updateStepView();
+      }
+      
+      document.querySelector('main').scrollTop = 0;
+    }
+
+    renderDots();
+  </script>
+</body>
+</html>
